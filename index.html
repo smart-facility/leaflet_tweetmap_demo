@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--Leaflet Tweet Map Demo - Simple example to plot tweets on a web map -->
+<!--Prepared for NepalQuakeAid.com-->
+<!--Derived from PetaJakarta.org-->
+<!--Tomas Holderness, University of Wollonong-->
+<html>
+<head>
+	<title>Leaflet Tweet Map</title>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <!--setup leaflet in fullscreen-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <!--
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  -->
+
+  <!--load tweets - cheating by using a local JavaScript file-->
+  <script src="tweets.json"></script>
+
+	<!--setup page style-->
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		html, body, #map {
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="map"></div>
+
+	<script>
+		//initialise map
+    var map = L.map('map').setView([40.03,-105.251945], 13);
+
+		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			id: 'examples.map-i875mjb7'
+		}).addTo(map);
+
+		//pull in prepared tweet data
+		var tweet_data = jsonTweetData
+		//loop through tweets, add marker to map with text popup
+		for (var i=0; i < tweet_data.length; i++){
+			L.marker(tweet_data[i].coordinates.coordinates).bindPopup(tweet_data[i].text).addTo(map)
+		}
+	</script>
+</body>
+</html>
