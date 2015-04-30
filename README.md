@@ -7,14 +7,12 @@ An expanded Gist, prepared for http://NepalQuakeAid.com April 2014
 
 Derived from http://PetaJakarta.org (https://github.com/smart-facility/petajakarta-web)
 
-
-Tomas Holderness, SMART Infrastructure Facility, University of Wollongong
-
 ####Data
-Sample Tweets based on GNIP Gist: https://gist.github.com/gnip/764239
+Sample Tweets kindly provided by GNIP Gist: https://gist.github.com/gnip/764239
 * Note: Tweets loaded as JS/JSON file for purposes of demo
 
 ####Map
 Based on LeafletJS tutorial: http://leafletjs.com/examples/quick-start.html
 
 ####Screenshot
+![map](https://raw.githubusercontent.com/smart-facility/leaflet_tweetmap_demo/master/screenshot.png)
