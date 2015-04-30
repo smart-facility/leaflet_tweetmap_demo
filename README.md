@@ -3,9 +3,10 @@ Leaflet Tweet Map Demo
 ###Plot tweets on a web map
 
 ####About
-Prepared for NepalQuakeAid.com
+An expanded Gist, prepared for http://NepalQuakeAid.com April 2014
 
 Derived from http://PetaJakarta.org (https://github.com/smart-facility/petajakarta-web)
+
 
 Tomas Holderness, SMART Infrastructure Facility, University of Wollongong
 
