@@ -7,16 +7,41 @@
 <head>
 	<title>Leaflet Tweet Map</title>
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta name="twitter:widgets:csp" content="on">
   <!--setup leaflet in fullscreen-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-  <!--
+	<script src="https://platform.twitter.com/widgets.js"></script>
+	<!--<script>
+		window.twttr = (function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0],
+			t = window.twttr || {};
+		if (d.getElementById(id)) return t;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "https://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js, fjs);
+
+		t._e = [];
+		t.ready = function(f) {
+			t._e.push(f);
+		};
+
+		return t;
+		}(document, "script", "twitter-wjs"));
+		//console.log(twttr);
+		//console.log(twttr.widgets())
+		//twttr.widgets.load();
+	</script>-->
+
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  -->
+
 
   <!--load tweets - cheating by using a local JavaScript file-->
   <script src="tweets.json"></script>
+	<!-- Twitter embed script-->
+
 
 	<!--setup page style-->
 	<style>
@@ -45,11 +70,18 @@
 		}).addTo(map);
 
 		//pull in prepared tweet data
-		var tweet_data = jsonTweetData
+		var tweet_data = jsonTweetData;
 		//loop through tweets, add marker to map with text popup
-		for (var i=0; i < tweet_data.length; i++){
-			L.marker(tweet_data[i].coordinates.coordinates).bindPopup(tweet_data[i].text).addTo(map)
-		}
-	</script>
+			for (var i=0; i < tweet_data.length; i++){
+				marker = L.marker(tweet_data[i].coordinates.coordinates).bindPopup('<blockquote class="twitter-tweet" lang="en"><p>'+tweet_data[i].text+'</p>&mdash;'+tweet_data[i].name+'(@'+tweet_data[i].screen_name+') <a href="https://twitter.com/'+tweet_data[i].screen_name+'/status/'+tweet_data[i].id_str+'"></a></blockquote>');
+				marker.addTo(map);
+			};
+
+		map.on('popupopen', function(){
+			twttr.widgets.load();
+			console.log('fired');
+		})
+
+		</script>
 </body>
 </html>
