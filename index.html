@@ -11,37 +11,13 @@
   <!--setup leaflet in fullscreen-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <!--load leaflet javascript-->
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<!--load twitter javascript-->
 	<script src="https://platform.twitter.com/widgets.js"></script>
-	<!--<script>
-		window.twttr = (function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0],
-			t = window.twttr || {};
-		if (d.getElementById(id)) return t;
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "https://platform.twitter.com/widgets.js";
-		fjs.parentNode.insertBefore(js, fjs);
-
-		t._e = [];
-		t.ready = function(f) {
-			t._e.push(f);
-		};
-
-		return t;
-		}(document, "script", "twitter-wjs"));
-		//console.log(twttr);
-		//console.log(twttr.widgets())
-		//twttr.widgets.load();
-	</script>-->
-
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
 
   <!--load tweets - cheating by using a local JavaScript file-->
   <script src="tweets.json"></script>
-	<!-- Twitter embed script-->
-
 
 	<!--setup page style-->
 	<style>
@@ -76,12 +52,10 @@
 				marker = L.marker(tweet_data[i].coordinates.coordinates).bindPopup('<blockquote class="twitter-tweet" lang="en"><p>'+tweet_data[i].text+'</p>&mdash;'+tweet_data[i].name+'(@'+tweet_data[i].screen_name+') <a href="https://twitter.com/'+tweet_data[i].screen_name+'/status/'+tweet_data[i].id_str+'"></a></blockquote>');
 				marker.addTo(map);
 			};
-
+		//ask the popup to render using Twitter embedded tweets
 		map.on('popupopen', function(){
 			twttr.widgets.load();
-			console.log('fired');
 		})
-
 		</script>
 </body>
 </html>
